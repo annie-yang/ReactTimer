@@ -28,6 +28,10 @@ var Countdown = React.createClass({
       }
     }
   },
+  componentWillUnmount:function(){
+    clearInterval(this.timer);
+    this.timer = undefined; // clean up variable
+  },
   startTimer:function(){
     this.timer = setInterval(() => {
       // calculate the new count (decreasing)
@@ -36,6 +40,9 @@ var Countdown = React.createClass({
         // if newCount >= 0, if not, set newCount to be 0
         count:newCount >= 0 ? newCount : 0
       });
+      if(newCount === 0){
+          this.setState({countdownStatus: 'stopped'});
+      }
     }, 1000);
   },
   // called once valid form is submitted with data
