@@ -8,7 +8,12 @@ module.exports = function(config){
 
     // globing pattern - basic file pattern
     // get tests file in tests folder ** (or in any sub directories) that has a file name of star of anything that end in of 'test.jsx'
-    files: ['app/tests/**/*.test.jsx'], // test files to be executed
+    files: [
+      'node_modules/jquery/dist/jquery.min.js',
+      'node_modules/foundation-sites/dist/foundation.min.js',
+      './app/app.jsx',
+      'app/tests/**/*.test.jsx'
+    ], // test files to be executed
 
     // specifying the things we want to do in our test files
     preprocessors: {

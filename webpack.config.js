@@ -1,5 +1,6 @@
 // loading webpack utilities
 var webpack = require('webpack');
+var path=require('path');
 
 module.exports = {
 	// where to start
@@ -49,19 +50,25 @@ module.exports = {
 		},
 		module: {
 		// telling babel loader to take our file
-		loaders: [
-		{
-			loader: 'babel-loader',
-			// parse through react
-			// get output and run them through 3s2015
-			query: {
-				presets: ['react', 'es2015']
-			},
-			// tell it which file we want to apply the loader to
-			// in this case, select every file that has a '.js' extension
-			test: /\.jsx?$/,
-			exclude: /(node_modules|bower_components)/
-		}]
+			loaders: [
+			{
+				loader: 'babel-loader',
+				// parse through react
+				// get output and run them through 3s2015
+				query: {
+					presets: ['react', 'es2015']
+				},
+				// tell it which file we want to apply the loader to
+				// in this case, select every file that has a '.js' extension
+				test: /\.jsx?$/,
+				exclude: /(node_modules|bower_components)/
+			}
+		]
+	},
+	sassLoader:{
+		includePaths: [
+			path.resolve(__dirname, './node_modules/foundation-sites/scss')
+		]
 	},
 	// create source maps for debugging purposes only
 	devtool: 'cheap-module-eval-source-map'
