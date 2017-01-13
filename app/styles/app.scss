@@ -4,8 +4,10 @@
 @import "base/foundation-settings";
 @import "foundation";
 @include foundation-everything;
-// components
-// series of imports linking to other files
+
+/*
+  series of imports linking to other files
+*/
 @import "base/variables";
 @import "components/navigation";
 @import "components/clock";

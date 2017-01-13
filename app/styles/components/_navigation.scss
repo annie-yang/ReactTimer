@@ -2,14 +2,21 @@
 	background-color: $nav-background;
 }
 
+/*
+	can nest multiple things in scss
+	same as .top-bar .menu-text in css
+*/
 .top-bar{
 	.menu-text{
 		color:$nav-text-color;
 	}
 
+/*
+	'>' are selectors
+*/
 	.menu > .menu-text > a{
-		display:inline;
-		padding: 0;
+		display:inline; 
+		padding: 0; // removes excess space around the name
 	}
 }
 
