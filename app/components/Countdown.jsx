@@ -1,4 +1,6 @@
 var React = require('react');
+
+// components
 var Clock = require('Clock');
 var CountdownForm = require('CountdownForm');
 var Controls = require('Controls');
@@ -67,7 +69,7 @@ var Countdown = React.createClass({
     };
     return(
       <div>
-        <h1 className="page-title">Countdown</h1> 
+        <h1 className="page-title">Countdown</h1>
         <Clock totalSeconds={count}/>
         {renderControlArea()}
       </div>

@@ -1,11 +1,11 @@
 .clock{
-  align-items: center;
+  align-items: center; // align text vertically
   background-color: $clock-bg-color;
   border: 2px solid $clock-border-color;
-  border-radius: 50%;
-  display: flex;
+  border-radius: 50%; // creates perfect circle
+  display: flex; // center clock text in middle of circle
   height: 14rem;
-  justify-content: center;
+  justify-content: center; // display equals to flex
   margin: 4rem auto;
   width: 14rem;
 }
