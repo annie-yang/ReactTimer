@@ -4,19 +4,34 @@ var React = require('react');
 var CountdownForm = React.createClass({
   onSubmit: function(e){
     e.preventDefault();
-    var strSeconds = this.refs.seconds.value;
+    var strSeconds = this.refs.seconds.value; // get value from 'input'
 
     console.log('input count', $('input').length);
-    
-    if(strSeconds.match(/^[0-9]*$/)){ // regular expressions
+
+    /*
+      make sure 'strSeconds' contains only numbers of 0 - 9
+      '.match' expects a regular expression and start and end with forward slash (/ /)
+      '*' is allowing many times the user likes (EX: the user can enter as many 0's - 9's)
+      '^' start with 0 - 9 characters
+      '$' end with 0 - 9 characters
+
+      return data IF there is a match, otherwise return null
+    */
+    if(strSeconds.match(/^[0-9]*$/)){ // regular expressions to define patterns in a string
       // clear text
       this.refs.seconds.value = '';
 
-      // calling parent function
-      // 10 specifies the base (using standard numbers)
+      /*
+        call parent function
+        '10' specifies the base (using standard numbers)
+
+        'onSetCountdown' expects a number and set that number as current count, which will rerender the clock
+        passes down to 'Countdown.jsx'
+      */
       this.props.onSetCountdown(parseInt(strSeconds, 10));
     }
   },
+  // 'onSubmit' function to call when form is submitted
   render:function(){
     return(
       <div>

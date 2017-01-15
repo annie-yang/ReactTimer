@@ -11,28 +11,33 @@ describe('Countdown', () => {
     expect(Countdown).toExist();
   });
 
+  /*
+    countdown status and state gets updated
+    after a second, the count gets decremented by 1
+  */
   describe('handleSetCountdown', () => {
     it('should set state to started and countdown', (done) => {
       var countdown = TestUtils.renderIntoDocument(<Countdown/>);
-      countdown.handleSetCountdown(10);
+      countdown.handleSetCountdown(10); // start countdown from 10
 
-      expect(countdown.state.count).toBe(10);
-      expect(countdown.state.countdownStatus).toBe('started');
+      expect(countdown.state.count).toBe(10); // expect countdown to be 10
+      expect(countdown.state.countdownStatus).toBe('started'); // expect status to be 'started'
 
-      setTimeout(() => {
-        expect(countdown.state.count).toBe(9);
-        done();
-      }, 1001)
-    });
+      /*
+        setTimeout to wait over a second and make a new assertion checking that the new count is now 9
+        test over a second, the count gets updated
+        test the count never gets set to a negative number
 
-    it('should never set count less than zer0', (done) => {
+        'done' lets Mocha know that there will be a asynchronous test, and it should wait until 'done' is called to stop the test
+      */
+    it('should never set count less than zero', (done) => {
       var countdown = TestUtils.renderIntoDocument(<Countdown/>);
-      countdown.handleSetCountdown(1);
+      countdown.handleSetCountdown(1); // wait or count to reach 0
 
       setTimeout(() => {
-        expect(countdown.state.count).toBe(0);
-        done();
-      }, 3001)
+        expect(countdown.state.count).toBe(0); // after the seconds, the count should not be < 0
+        done(); // calls 'done' once we're done
+      }, 3001) // wait 3 thousand and 1 ms (just a little over 3 seconds)
     });
 
     it('should pause countdown on paused status', (done) => {
@@ -40,6 +45,7 @@ describe('Countdown', () => {
       countdown.handleSetCountdown(3);
       countdown.handleStatusChange('paused');
 
+      // asynchronous function --> use 'done' to not fail test
       setTimeout(() => {
         expect(countdown.state.count).toBe(3);
         expect(countdown.state.countdownStatus).toBe('paused');
