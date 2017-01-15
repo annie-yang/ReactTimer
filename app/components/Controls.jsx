@@ -11,6 +11,10 @@ var Controls = React.createClass({
     countdownStatus: React.PropTypes.string.isRequired,
     onStatusChange: React.PropTypes.func.isRequired
   },
+  /*
+    one function that handles all three button statuses instead of having each individual ones
+    function that generates another function
+  */
   onStatusChange: function(newStatus){
     return() =>{
       this.props.onStatusChange(newStatus);

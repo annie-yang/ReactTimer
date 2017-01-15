@@ -1,12 +1,12 @@
 .controls{
   display:flex;
-  justify-content: center;
+  justify-content: center; // center button left and right
 
   .button{
     padding: .75rem 3rem;
   }
 
-  .button:first-child{
+  .button:first-child{   // select first button
     margin-right: 1.5rem;
   }
 }

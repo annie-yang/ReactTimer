@@ -36,10 +36,10 @@ var Countdown = React.createClass({
           this.startTimer();
           break;
         case 'stopped':
-          this.setState({count: 0});
+          this.setState({count: 0}); // reset time to 0 and clear timer
         case 'paused':
-          clearInterval(this.timer)
-          this.timer = undefined;
+          clearInterval(this.timer) // cancel 'setInterval' call
+          this.timer = undefined; // leave the count wherever it was
           break;
       }
     }
@@ -94,15 +94,22 @@ var Countdown = React.createClass({
       countdownStatus: 'started'
     });
   },
+  // when new status gets passed in from 'Controls', it will be responsible for properly handling it
   handleStatusChange: function(newStatus){
-    this.setState({countdownStatus: newStatus});
+    this.setState({countdownStatus: newStatus}); // update the state
   },
   render: function(){
-    // grabs the count
+    // grabs the 'count' and 'countdownStatus'
     var {count, countdownStatus} = this.state;
 
+    // renders 'Controls' component or 'CountdownForm' component
     var renderControlArea =  () => {
+      // if it's not 'stopped', then it is either 'started' or 'paused'
       if(countdownStatus !== 'stopped'){
+        /*
+          render the 'Controls'
+          'onStatusChange' is the function to call when button gets clicked
+        */
         return <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange}></Controls>;
       } else{
         // 'onSetCountdown' defines which function to call on current class when the child calls that function
