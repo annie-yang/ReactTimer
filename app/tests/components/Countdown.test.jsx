@@ -34,32 +34,33 @@ describe('Countdown', () => {
       var countdown = TestUtils.renderIntoDocument(<Countdown/>);
       countdown.handleSetCountdown(1); // wait or count to reach 0
 
+      // asynchronous function --> use 'done' to not fail test
       setTimeout(() => {
         expect(countdown.state.count).toBe(0); // after the seconds, the count should not be < 0
         done(); // calls 'done' once we're done
       }, 3001) // wait 3 thousand and 1 ms (just a little over 3 seconds)
     });
 
+    // when paused, the timer doesn't change
     it('should pause countdown on paused status', (done) => {
       var countdown = TestUtils.renderIntoDocument(<Countdown/>);
-      countdown.handleSetCountdown(3);
-      countdown.handleStatusChange('paused');
+      countdown.handleSetCountdown(3); // set count to 3 and start interval
+      countdown.handleStatusChange('paused'); // trigger the 'pause' status
 
-      // asynchronous function --> use 'done' to not fail test
       setTimeout(() => {
-        expect(countdown.state.count).toBe(3);
-        expect(countdown.state.countdownStatus).toBe('paused');
+        expect(countdown.state.count).toBe(3); // assert count is still 3
+        expect(countdown.state.countdownStatus).toBe('paused'); // assert the countdownStatus is 'paused'
         done();
       }, 1001);
     });
 
     it('should reset countdown on stopped', (done) => {
       var countdown = TestUtils.renderIntoDocument(<Countdown/>);
-      countdown.handleSetCountdown(3);
-      countdown.handleStatusChange('stopped');
+      countdown.handleSetCountdown(3); // setting count to 3 and starting process
+      countdown.handleStatusChange('stopped'); // set the new countdownStatus to 'stopped' and reset the countdown to 0
 
       setTimeout(() => {
-        expect(countdown.state.count).toBe(0);
+        expect(countdown.state.count).toBe(0); 
         expect(countdown.state.countdownStatus).toBe('stopped');
         done();
       }, 1001);

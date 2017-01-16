@@ -22,6 +22,7 @@ var Countdown = React.createClass({
     };
   },
   /*
+    gets fired right after an update to application either to props or state
     updates everytime the state gets updated (such as timer starting)
     listens to state change
   */
@@ -44,8 +45,13 @@ var Countdown = React.createClass({
       }
     }
   },
+  /*
+    automatically gets fired by React right before the component gets removed from the DOM
+    visually removed from the browser
+    switching tabs (component gets removed)
+  */
   componentWillUnmount:function(){
-    clearInterval(this.timer);
+    clearInterval(this.timer); // clear timer
     this.timer = undefined; // clean up variable
   },
   // starts timer using 'setInterval' after a certain amount of time
@@ -70,7 +76,7 @@ var Countdown = React.createClass({
         count: newCount >= 0 ? newCount : 0 // iternary operator
       });
 
-      // if the newCount has reached the end, stop the countdown
+      // if the newCount has reached the end, stop the countdown (can view from console)
       if(newCount === 0){
           this.setState({countdownStatus: 'stopped'});
       }
@@ -128,3 +134,31 @@ var Countdown = React.createClass({
 });
 
 module.exports = Countdown;
+
+/*
+  NOTES:
+    gets fired before the fact
+    takes in next props and next state
+
+    componentWillUpdate: function(nextProps, nextState){
+
+    },
+
+    ------------------------------------------------
+    component always get fired first
+    gets loaded when switching tabs
+    component gets rendered to the screen, the component will mount and lifecycle method gets called
+
+    componentWillMount: function(){
+      console.log('componentWillMount');
+    },
+
+    ------------------------------------------------
+    gets fired right after everything gets rendered in the DOM
+    gets fired after "componentWillMount"
+    access to any refs if want to do any updating
+
+    componentDidmount:function(){
+      console.log('componentDidmount');
+    },
+*/
