@@ -9,8 +9,9 @@ var Main = require('Main');
 var Timer = require('Timer');
 var Countdown = require('Countdown');
 
+
 // load foundation
-require('style!css!sass!applicationStyles')
+$(document).foundation();
 
 // app css
 require('style!css!sass!applicationStyles')

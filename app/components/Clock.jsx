@@ -32,13 +32,13 @@ var Clock = React.createClass({
     // access to 'totalSeconds' variable
     var {totalSeconds} = this.props;
 
+    /*
+      renders using 'formatSeconds'
+      'formatSeconds' returns the string and automatically gets rendered inside the span tag
+    */
     return (
       <div className="clock">
         <span className="clock-text">
-          /*
-            renders using 'formatSeconds'
-            'formatSeconds' returns the string and automatically gets rendered inside the span tag
-          */
           {this.formatSeconds(totalSeconds)}
         </span>
       </div>

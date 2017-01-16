@@ -65,6 +65,7 @@ module.exports = {
 			}
 		]
 	},
+	// have sass be aware there are files we want to include
 	sassLoader:{
 		includePaths: [
 			path.resolve(__dirname, './node_modules/foundation-sites/scss')
